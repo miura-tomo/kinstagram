@@ -63,7 +63,7 @@ nav{
 .wrapper{
 	min-height: 100vh;
 	position: relative;
-	padding-bottom: 20px;
+	padding-bottom: 10px;
 	box-sizing: border-box;
 }
 
@@ -75,4 +75,8 @@ footer{
 	padding: 2px 0;
 	position: absolute;
 	bottom: 0;
+}
+.menu{
+	display: inline-block;
+	padding-right: 100px;
 }

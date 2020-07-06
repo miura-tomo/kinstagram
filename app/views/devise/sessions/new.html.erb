@@ -2,6 +2,9 @@
   <div id="form-div">
     <form class="form" id="form1">
 
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+       <%= render "devise/shared/error_messages", resource: resource %>
+
       <p class="name">
         <input name="name" type="text" class="feedback-input" placeholder="名前またはニックネーム" id="name" />
       </p>
@@ -10,9 +13,7 @@
         <input name="email" type="text" class=" feedback-input" id="email" placeholder="メールアドレス" />
       </p>
 
-      <!-- <p class="text">
-        <textarea name="text" class="validate[required,length[6,300]] feedback-input" id="comment" placeholder="Comment"></textarea>
-      </p> -->
+    
 
       <p class="email">
         <input type="password" type="text" class="validate[required,custom[email]] feedback-input" id="password" placeholder="パスワード" />
@@ -30,5 +31,6 @@
         <input type="submit" value="新規登録する" id="button-blue"/>
         <div class="ease"></div>
       </div>
+      <% end %>
     </form>
   </div>
