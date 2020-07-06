@@ -1,29 +1,30 @@
-<h2>Sign up</h2>
+ログイン画面
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<div id="form-main">
+  <div id="form-div">
+    <form class="form" id="form1">
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <p class="name">
+        <input name="name" type="text" class="feedback-input" placeholder="名前またはニックネーム" id="name" />
+      </p>
+<!-- plsceholder=最初から入れる文字 -->
+      <p class="email">
+        <input name="email" type="text" class=" feedback-input" id="email" placeholder="メールアドレス" />
+      </p>
+
+      <!-- <p class="text">
+        <textarea name="text" class="validate[required,length[6,300]] feedback-input" id="comment" placeholder="Comment"></textarea>
+      </p> -->
+
+      <p class="email">
+        <input type="password" type="text" class="validate[required,custom[email]] feedback-input" id="password" placeholder="パスワード" />
+      </p>
+
+
+
+      <div class="submit">
+        <input type="submit" value="ログイン" id="button-blue"/>
+        <div class="ease"></div>
+      </div>
+    </form>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>

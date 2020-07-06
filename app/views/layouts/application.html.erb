@@ -1,3 +1,5 @@
+<!-- フッターとヘッターについての記述です -->
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,6 +12,31 @@
   </head>
 
   <body>
+    <!-- ヘッダー要素 -->
+<header>
+  <h1><a href="#"><img src= "/assets/logo.png" alt="kinstagram"></a></h1>
+  <nav>
+    <ul>
+      <li><a href="#">ABOUT</a></li>
+      <li><%= link_to "新規登録",new_user_session_path%></li>
+      <li><%= link_to "ログイン",new_user_registration_path%></li>
+      <li><a href="#">ログアウト</a></li>
+      <li><a href="#">お問い合わせ</a></li>
+    </ul>
+  </nav>
+</header>
     <%= yield %>
   </body>
+  <footer>
+    <div class="menu">
+      <ul>
+        <li><a href="#">ABOUT</a></li>
+        <li><a href="#">新規登録</a></li>
+        <li><a href="#">ログイン</a></li>
+        <li><a href="#">ログアウト</a></li>
+        <li><a href="#">お問い合わせ</a></li>
+      </ul>
+    </div>
+  <p>©︎ Tomoya-Ishiguro All Rights Reserved.2020</p>
+</footer>
 </html>

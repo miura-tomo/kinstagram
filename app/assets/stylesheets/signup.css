@@ -1,21 +1,23 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 /*インポートによる文字フォントの読み込み*/
 
-html{
+/*html{
   background:url(logo.png) no-repeat;
   background-size: auto;
-}
+}*/
 /*入力フォームの文字揃え*/
 #feedback-page{
   text-align:left;
 }
 
+/*情報入力フォーム*/
 #form-main{
   width:100%;
   float:left;
   padding-top:0px;
 }
 
+/*フッターにフォームが入り込むのでmargin-topの指定をコメントアウト*/
 #form-div {
   background-color:rgba(72,72,72,0.4);
   padding-left:35px;
@@ -26,7 +28,7 @@ html{
   float: left;
   left: 50%;
   position: absolute;
-  margin-top:100px;
+  /*margin-top:100px;*/
   margin-left: -260px;
   border-radius: 90px;
 }
