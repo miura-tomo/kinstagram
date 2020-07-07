@@ -1,0 +1,7 @@
+投稿の詳細ページです
+
+<%= attachment_image_tag @post, :image %>
+<h2 class="post-title"><%= @post.food_name %></h2>
+<%= @post.user.name %>
+<i class="fa fa-calendar"></i><%= @post.created_at.strftime('%y/%m/%d') %>
+

@@ -5,20 +5,22 @@ class PostsController < ApplicationController
 
 	def create
 		@post = Post.new(post_params)
-		@post_user_id = current_user.id
+		@post.user_id = current_user.id
 		@post.save
 		redirect_to posts_path
 	end
 
 	def index
+		@post = Post.all
 	end
 
 	def show
+		@post = Post.find(params[:id])
 	end
 
 private
 def post_params
-	params.require(:post).permit(:food_menu, :image, :caption,)
+	params.require(:post).permit(:food_name, :image, :caption,)
 end
 
 end
