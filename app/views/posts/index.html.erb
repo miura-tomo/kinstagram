@@ -8,7 +8,7 @@ postのindex（一覧）
 
 
 
-          <% @post.each do |post| %>
+          <% @posts.each do |post| %>
           <div class="post-box">
              <%= link_to post_path(post.id) do %>
              <%= attachment_image_tag post, :image, :fill, 200, 200, format: 'jpeg' %>
@@ -20,6 +20,6 @@ postのindex（一覧）
              </div>
            <div>
           <% end %>
+          <%= paginate @posts %>
 
-          <ul class="inline-meta">
-            <li>コメントした人
+          

@@ -6,12 +6,15 @@ class PostsController < ApplicationController
 	def create
 		@post = Post.new(post_params)
 		@post.user_id = current_user.id
-		@post.save
+		if @post.save
 		redirect_to posts_path
+	    else
+	    render :new
+	    end
 	end
 
 	def index
-		@post = Post.all
+		@posts = Post.page(params[:page]).reverse_order
 	end
 
 	def show
@@ -19,7 +22,7 @@ class PostsController < ApplicationController
 		@post_comment = PostComment.new
 	end
 
-	
+
 
 private
 def post_params
