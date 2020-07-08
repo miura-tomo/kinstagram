@@ -1,0 +1,31 @@
+マイページ
+
+<div class="profile-container">
+	<h3 class="profile-name"><%= @user.name %></h3>
+	<%= image_tag('image2.jpg', class: "img-circle pull-left profile-thumb", style: "width: 100px; height 100px; margin-top: 20px;") %>
+</div>
+
+<section class="sct-color-1 slice">
+  <div class="container-fluid masonry-container">
+    <div class="row">
+      <div class="col-md-8 col-sm-offset-2">
+        <div class="masonry-wrapper-cols">
+          <div class="masonry-gutter"></div>
+
+
+
+          <% @posts.each do |post| %>
+          <div class="post-box">
+             <%= link_to post_path(post.id) do %>
+             <%= attachment_image_tag post, :image, :fill, 200, 200, format: 'jpeg' %>
+             <% end %>
+              <div class="post-comment">
+                 <span class="post-name"><%= post.food_name %></span>
+                 <span class="post-body"><%= post.caption %></span>
+                 <span class="post-user"><%= post.user_id %></span>
+             </div>
+           <div>
+          <% end %>
+          <%= paginate @posts %>
+
+          

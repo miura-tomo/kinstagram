@@ -29,6 +29,11 @@
   <i class="fa fa-comment"></i>
   <a href="#comments"><%= @post.post_comments.count %></a>
 </li>
+<li>
+  <% if @post.user == current_user %>
+    <%= link_to "投稿を削除する", post_path(@post), method: :delete %>
+  <% end %>
+</li>
 <div class="comment-list bt style-2" id="comments">
   <div class="float-wrapper">
     <h2 class="comment-count"><%= @post.post_comments.count %>件コメント</h2>
