@@ -6,9 +6,24 @@
 <%= attachment_image_tag @post, :image %>
 <h2 class="post-title"><%= @post.food_name %></h2>
 <%= @post.user.name %>
+<li>
 <i class="fa fa-calendar"></i><%= @post.created_at.strftime('%y/%m/%d') %>
-
-
+</li>
+<!-- 自分がいいねしているかどうかの条件分岐です -->
+<% if @post.favorited_by?(current_user) %>
+<li>
+	<%= link_to post_favorites_path(@post), method: :delete do %>
+	<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+	<% end %>
+</li>
+<% else %>
+<li>
+	<%= link_to post_favorites_path(@post), method: :post do %>	
+       <i class="fa fa-heart-o" aria-hidden="true"></i>
+       <%= @post.favorites.count %>　いいね
+       <% end %>
+</li>
+<% end %>
 
 <li>
   <i class="fa fa-comment"></i>
@@ -37,7 +52,7 @@
  			<div class="comment-entry"><%= post_comments.comment %></div>
  			<% if post_comments.user == current_user%>
  			<div>
- 				<%= link_to "コメント削除", post_post_comment_path(post_comments.post, post_comments), method: :delete, class: "btn btn-danger pull-right" %>
+ 				<%= link_to "コメントを削除する", post_post_comment_path(post_comments.post, post_comments), method: :delete, class: "btn btn-danger pull-right" %>
  			</div>
  			<% end %>
  		</div>
