@@ -1,6 +1,6 @@
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
+ * posted below.
  *
  * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
  * vendor/assets/stylesheets directory can be referenced here using a relative path.
@@ -17,66 +17,80 @@
 /*ヘッダーとフッターのcss*/
 
 * {
-   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body {
-   margin: 0;
-   padding: 0;
-   font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif;
-   background-color: #e6e6e6;
+header, h1, nav, .post-comment {
+  font-family: 'Kaushan Script', cursive, sans-serif;
+}
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
 }
 header {
-	width: 100%
-	height: 50px;
-	padding: 30px 4% 10px;
-	background:rgba(247,213,74,0.3);
-	position: flxed;
-	top: 0;
-	display: flex;
-	align-items: center;
+  width: 90%;
+  padding: 15px 0;
+  margin: 30px auto 0;
+  text-align: center;
+  border-top: solid 5px #000000;
 }
-h1{
+header .headline {
+  font-size: 32px;
+}
+nav {
+  width: 880px;
+  margin: 0 auto;
+  border-top: solid 0.7px #000000;
+  border-bottom: solid 0.7px #000000;
+}
+.nav-list {
+  text-align: center;
+  padding: 10px 0;
+  margin: 0 auto;
+}
+.nav-list-item {
+  list-style: none;
+  display: inline-block;
+  margin: 0 20px;
+}
+main {
+  width: 880px;
+  margin: 0 auto;
+}
+
+/*一覧画面のcss*/
+.post-box {
+  width: 200px;
+  height: 250px;
+  margin: 10px;
+  float: left;
+  position: relative;
+}
+.post-comment {
+  width: 200px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.post-body {
 	display: block;
-	width: 65px;
-	height: 65px;
-	font-size: 0px;
+	color: gray;
+	font-size: 12px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
-a{
-	text-decoration: none;
-	color: black;
+.post-title {
+	display: block;
+	font-size: 18px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
-ul{
-	list-style: none;
-	margin: 0;
-	display: flex;
-}
-li{
-	margin: 0 0 0 30px;
-	font-size: 14px;
-}
-nav{
-	margin: 0 10px 0 auto;
-}
-
-/*フッターの位置に関する記述*/
-.wrapper{
-	min-height: 100vh;
-	position: relative;
-	padding-bottom: 10px;
-	box-sizing: border-box;
-}
-
-footer{
-	width: 100%;
-	background-color: orange;
-	color: #fff;
-	text-align: center;
-	padding: 2px 0;
-	position: absolute;
-	bottom: 0;
-}
-.menu{
-	display: inline-block;
-	padding-right: 100px;
+.post-user {
+	font-size: 10px;
 }

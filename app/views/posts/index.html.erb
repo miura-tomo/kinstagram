@@ -1,19 +1,25 @@
-投稿のindex（一覧）
+postのindex（一覧）
 <section class="sct-color-1 slice">
   <div class="container-fluid masonry-container">
     <div class="row">
       <div class="col-md-8 col-sm-offset-2">
         <div class="masonry-wrapper-cols">
           <div class="masonry-gutter"></div>
-          <!-- 投稿がないのでnillエラー -->
+
+
+
           <% @post.each do |post| %>
-
-          <%= link_to post_path(post.id) do %>
-          <%= attachment_image_tag post, :image %>
+          <div class="post-box">
+             <%= link_to post_path(post.id) do %>
+             <%= attachment_image_tag post, :image, :fill, 200, 200, format: 'jpeg' %>
+             <% end %>
+              <div class="post-comment">
+                 <span class="post-name"><%= post.food_name %></span>
+                 <span class="post-body"><%= post.caption %></span>
+                 <span class="post-user"><%= post.user_id %></span>
+             </div>
+           <div>
           <% end %>
 
-          <%= post.food_name %>
-		      <%= post.caption %>
-		      <%= post.user_id %>
-
-          <% end %>
+          <ul class="inline-meta">
+            <li>コメントした人
