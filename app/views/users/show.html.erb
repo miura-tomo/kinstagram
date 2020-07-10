@@ -1,31 +1,49 @@
-マイページ
-
 <div class="profile-container">
 	<h3 class="profile-name"><%= @user.name %></h3>
-	<%= image_tag('image2.jpg', class: "img-circle pull-left profile-thumb", style: "width: 100px; height 100px; margin-top: 20px;") %>
+	<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile_image", fallback: "no_image.jpg", size:'60x60' %>
+  <% if @user.id == current_user.id %>
+  <p><%= link_to "マイページ編集", edit_user_path(@user), class: "pull-right" %></p>
+  <% end %>
 </div>
-
 <section class="sct-color-1 slice">
   <div class="container-fluid masonry-container">
     <div class="row">
       <div class="col-md-8 col-sm-offset-2">
         <div class="masonry-wrapper-cols">
           <div class="masonry-gutter"></div>
-
-
-
           <% @posts.each do |post| %>
-          <div class="post-box">
-             <%= link_to post_path(post.id) do %>
+          <div class="masonry-block">
+            <div class="block block-image v1">
+                <div class="block-image">
+                  <div class="view view-first">
+                    <%= link_to post_path(post.id) do %>
              <%= attachment_image_tag post, :image, :fill, 200, 200, format: 'jpeg' %>
              <% end %>
-              <div class="post-comment">
-                 <span class="post-name"><%= post.food_name %></span>
-                 <span class="post-body"><%= post.caption %></span>
-                 <span class="post-user"><%= post.user_id %></span>
-             </div>
-           <div>
+           </div>
+         </div>
+         <div class="block-comment">
+          <%= attachment_image_tag post.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", size:'60x60' , class: "img-circle pull-left profile-thumb" %>
+          <h3 class="block-title"></h3>
+          <%= link_to post_path(post.id) do %>
+          <i class="fa fa-map-marker"></i><%= post.food_name %>
           <% end %>
-          <%= paginate @posts %>
-
-          
+         </h3>
+         <p><%= post.caption %></p>
+         <ul class="inline-meta">
+           <li>投稿した人
+             <%= post.user.name %>
+           </li>
+           <li>
+             <a href="#">０コメント</a>
+           </li>
+         </ul>
+       </div>
+     </div>
+   </div>
+   <% end %>
+   <%= paginate @posts %>
+ </div>
+</div>
+</div>
+</div>
+</section>

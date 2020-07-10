@@ -45,6 +45,7 @@
  		<div class="comment-body">
  			<div class="comment-avatar">
  				<div class="avatar">
+          <%= attachment_image_tag post_comments.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", size:'60x60'  %>
  				</div>
  			</div>
  		<div class="commetn-text">
