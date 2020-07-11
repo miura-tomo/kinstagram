@@ -1,43 +1,83 @@
-投稿の詳細ページです
+<div class="container">
+  <div class="row py-3">
+    <div class="col-3 order-2" id="sticky-sidebar">
+      <div class="sticky-top">
 
 
-<%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'  %>
+        <div class="post-title">
+          <i class="fas fa-utensils">タイトル</i>
+          <%= @post.food_name %></div>
+          <i class="far fa-edit">投稿日時</i>
+          <%= @post.created_at.strftime('%y20年%m月%d日') %>
 
-<%= attachment_image_tag @post, :image %>
-<h2 class="post-title"><%= @post.food_name %></h2>
-<%= @post.user.name %>
-<li>
-<i class="fa fa-calendar"></i><%= @post.created_at.strftime('%y/%m/%d') %>
-</li>
-<!-- 自分がいいねしているかどうかの条件分岐です -->
-<% if @post.favorited_by?(current_user) %>
-<li>
-	<%= link_to post_favorites_path(@post), method: :delete do %>
-	<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-	<% end %>
-</li>
-<% else %>
-<li>
-	<%= link_to post_favorites_path(@post), method: :post do %>	
-       <i class="fa fa-heart-o" aria-hidden="true"></i>
-       <%= @post.favorites.count %>　いいね
-       <% end %>
-</li>
-<% end %>
+          <% if @post.favorited_by?(current_user) %>
+          <li>
+            <%= link_to post_favorites_path(@post), method: :delete do %>
+            <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+            <% end %>
+          </li>
+          <% else %>
+          <li>
+            <%= link_to post_favorites_path(@post), method: :post do %> 
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+            <%= @post.favorites.count %>いいね
+            <% end %>
+          </li>
+          <% end %>
+          <li>
+            <i class="fa fa-comment"></i>
+            <a href="#comments"><%= @post.post_comments.count %>コメント</a>
+          </li>
+          <li>
 
-<li>
-  <i class="fa fa-comment"></i>
-  <a href="#comments"><%= @post.post_comments.count %></a>
-</li>
-<li>
-  <% if @post.user == current_user %>
-    <%= link_to "投稿を削除する", post_path(@post), method: :delete %>
-  <% end %>
-</li>
-<div class="comment-list bt style-2" id="comments">
-  <div class="float-wrapper">
-    <h2 class="comment-count"><%= @post.post_comments.count %>件コメント</h2>
-  </div>
+            おこ
+           <ul>
+            <% @post.post_comments.each do |post_comments| %>
+            <li class="comment">
+              <div class="comment-body">
+                <div class="comment-avatar">
+                  <div class="avatar">
+                    <%= attachment_image_tag post_comments.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", size:'60x60'  %>
+                  </div>
+                </div>
+                <div class="commetn-text">
+                  <div class="comment-author clearfix">
+                    <a href="#" class="link-author"><%= post_comments.user.name %></a>
+                    <span class="comment-meta">
+                      <span class="comment-data"><%= post_comments.created_at.strftime('%y/%m/%d') %></span>
+                    </span>
+                  </div>
+                  <div class="comment-entry"><%= post_comments.comment %></div>
+                  <% if post_comments.user == current_user%>
+                  <div>
+                    <%= link_to "コメントを削除する", post_post_comment_path(post_comments.post, post_comments), method: :delete, class: "btn btn-danger pull-right" %>
+                  </div>
+                  <% end %>
+                </div>
+              </div>
+            </li>
+            <% end %>
+          </ul>
+
+
+
+        </div>
+      </div>
+
+
+
+
+
+
+        <div class="col" id="main">
+            <h3><%= @post.user.name %>さんの投稿です</h3>
+            <%= attachment_image_tag @post, :image %>
+
+        </div>
+    </div>
+</div>
+
+
 
  <ul>
  	<% @post.post_comments.each do |post_comments| %>

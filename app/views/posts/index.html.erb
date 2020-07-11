@@ -1,43 +1,27 @@
-            <div class="container">
-              <div class="row">
-                <% @posts.each do |post| %>
-                <div class="col-sm-3 col-xs-6">
+<h2>筋肉飯</h2>
 
-                  <%= link_to post_path(post.id) do %>
-                  <%= attachment_image_tag post, :image %>
+<div class="row">
+  <% @posts.each do |post| %>
+  <div class="col-md-3">
+    <div class="card">
+       <%= link_to post_path(post.id) do %>
+       <%= attachment_image_tag post, :image, class: 'card-img-top' %>
+       <% end %>
+       <%= attachment_image_tag post.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", size:'60x60' , class: "img-circle pull-left profile-thumb" %>
 
-                  <% end %>
-
-                  <%= link_to post_path(post.id) do %>
-                  <%= post.food_name %>
-                  <% end %>
-
-                  <p><%= post.caption %></p>
-                  <ul>
-                   <li>投稿者
-                     <%= post.user.name%>
-                   </li>
-                   <li>
-                     <a href="#">０ コメント</a>
-                   </li>
-                 </ul>
-               </div>
-
-               <% end %>
-               <%= paginate @posts %>
-
-          <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect fill="#55595c" width="100%" height="100%"/><text fill="#eceeef" dy=".3em" x="50%" y="50%">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary"></button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
+       <%= link_to post_path(post.id) do %>
+       <i class="fas fa-utensils"></i>
+       <%= post.food_name %>
+       <% end %>
+       <%= post.caption %>
+       <p><i class="fas fa-user-edit"></i>ユーザー名
+         <%= post.user.name %>
+     </p>
+     <%= link_to  post_path(post.id), class: 'btn btn-primary' do %>
+     <i class="fas fa-glasses"></i>
+     <span>もっとみる</span>
+     <i class="fas fa-glasses"></i>
+     <% end %>
+ </div>
+</div>
+<% end %>
