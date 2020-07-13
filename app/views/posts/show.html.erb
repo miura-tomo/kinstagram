@@ -2,14 +2,22 @@
   <div class="row py-3">
     <div class="col-3 order-2" id="sticky-sidebar">
       <div class="sticky-top">
-
-
+        <!-- ２カラム表記の右側の記述 -->
         <div class="post-title">
           <i class="fas fa-utensils">タイトル</i>
           <%= @post.food_name %></div>
+
+
+<div class="post-title">
+          <i class="fas fa-utensils">内容</i>
+          <%= @post.caption %></div>
+
+
           <i class="far fa-edit">投稿日時</i>
           <%= @post.created_at.strftime('%y20年%m月%d日') %>
 
+
+          <!-- ユーザーがいいねをしているか？の条件分岐 -->
           <% if @post.favorited_by?(current_user) %>
           <li>
             <%= link_to post_favorites_path(@post), method: :delete do %>
@@ -24,95 +32,72 @@
             <% end %>
           </li>
           <% end %>
+
+          <!-- ユーザー間のやり取りをeachメソッドで取り出す+件数表示 -->
           <li>
             <i class="fa fa-comment"></i>
             <a href="#comments"><%= @post.post_comments.count %>コメント</a>
           </li>
-          <li>
 
-            おこ
-           <ul>
-            <% @post.post_comments.each do |post_comments| %>
-            <li class="comment">
-              <div class="comment-body">
-                <div class="comment-avatar">
-                  <div class="avatar">
-                    <%= attachment_image_tag post_comments.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", size:'60x60'  %>
-                  </div>
-                </div>
-                <div class="commetn-text">
-                  <div class="comment-author clearfix">
-                    <a href="#" class="link-author"><%= post_comments.user.name %></a>
-                    <span class="comment-meta">
-                      <span class="comment-data"><%= post_comments.created_at.strftime('%y/%m/%d') %></span>
-                    </span>
-                  </div>
-                  <div class="comment-entry"><%= post_comments.comment %></div>
-                  <% if post_comments.user == current_user%>
-                  <div>
-                    <%= link_to "コメントを削除する", post_post_comment_path(post_comments.post, post_comments), method: :delete, class: "btn btn-danger pull-right" %>
-                  </div>
-                  <% end %>
-                </div>
+
+
+          <% @post.post_comments.each do |post_comments| %>
+          <li class="comment">
+            <div class="comment-body">
+              <div class="comment-avatar">
+                <div class="avatar">
+                 <%= attachment_image_tag post_comments.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", size:'60x60' , class: "img-circle pull-left profile-thumb" %>
+               </div>
+             </div>
+
+             <!-- コメント投稿者の画像と年月日を表示 -->
+
+             <div class="commetn-text">
+              <div class="comment-author clearfix">
+                <a href="#" class="link-author"><%= post_comments.user.name %></a>
+                <span class="comment-meta">
+                  <span class="comment-data"><%= post_comments.created_at.strftime('%y年%m月%d日') %></span>
+                </span>
               </div>
-            </li>
-            <% end %>
-          </ul>
+              <div class="comment-entry"><%= post_comments.comment %></div>
 
+              <!-- コメントしたユーザーがログインユーザーであれば削除できる条件分岐 -->
+              <!-- link_toからbutton＿へと変更しました -->
+              <% if post_comments.user == current_user%>
+              <div>
+                <%= button_to "コメントを削除する", post_post_comment_path(post_comments.post, post_comments), method: :delete, class: "btn btn-danger btn-outline-secondary btn-sm" %>
+              </div>
+              <% end %>
 
-
+            </div>
+          </div>
+        </li>
+        <% end %>
+        <!-- コメントを残すためのフォームを親の幅いっぱいに広げるための記述です -->
+        <%= form_for [@post, @post_comment] do |f| %>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-xs-12">
+                <br><%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントはこちら" %>
+              </div>
+            </div>
+          </div>
         </div>
+        <%= f.submit "送信する", class: "btn btn-outline-primary  pull-right" %>
+        <% end %>
+
       </div>
-
-
-
-
-
-
-        <div class="col" id="main">
-            <h3><%= @post.user.name %>さんの投稿です</h3>
-            <%= attachment_image_tag @post, :image %>
-
-        </div>
     </div>
-</div>
 
 
+    <!-- ２カラムの左側のレイアウト側 -->
 
- <ul>
- 	<% @post.post_comments.each do |post_comments| %>
- 	<li class="comment">
- 		<div class="comment-body">
- 			<div class="comment-avatar">
- 				<div class="avatar">
-          <%= attachment_image_tag post_comments.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", size:'60x60'  %>
- 				</div>
- 			</div>
- 		<div class="commetn-text">
- 			<div class="comment-author clearfix">
- 				<a href="#" class="link-author"><%= post_comments.user.name %></a>
- 				<span class="comment-meta">
- 					<span class="comment-data"><%= post_comments.created_at.strftime('%y/%m/%d') %></span>
- 				</span>
- 			</div>
- 			<div class="comment-entry"><%= post_comments.comment %></div>
- 			<% if post_comments.user == current_user%>
- 			<div>
- 				<%= link_to "コメントを削除する", post_post_comment_path(post_comments.post, post_comments), method: :delete, class: "btn btn-danger pull-right" %>
- 			</div>
- 			<% end %>
- 		</div>
- 	 </div>
-    </li>
-  <% end %>
-</ul>
 
-<%= form_for [@post, @post_comment] do |f| %>
-	<div class="row">
-    <div class="col-sm-12">
-      <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+    <div class="col" id="main">
+      <h3><%= @post.user.name %>さんの投稿です</h3>
+      <%= attachment_image_tag @post, :image %>
     </div>
   </div>
-  <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
-<% end %>
+</div>
 

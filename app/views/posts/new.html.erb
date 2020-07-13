@@ -13,14 +13,23 @@
   </div>
   <% end %>
 
+
+
   <div class="form-group">
    <label for="photo">料理の写真を選んでください</label><br>
-   <%= f.attachment_field :image %>
-   <br>
-   <h3><label for="name">この料理の名前</label></h3>
+   <%= f.attachment_field :image %><br>
 
+
+   <h3><label for="name">この料理の名前</label></h3>
    <%= f.text_field :food_name, class:"form-control", placeholder:"この筋肉飯の名前は？" %>
  </div>
+
+   <%= f.text_field :caption, class:"form-control", placeholder:"この筋肉飯の名前は？" %>
+
+
+
+
+
 
  <div class="form-group">
   <h3><label for="message">使った食材や栄養素</label></h3>

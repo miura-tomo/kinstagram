@@ -6,12 +6,24 @@
   <title>kinstagram</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- アイコンを使うための記述 -->
   <script src="https://kit.fontawesome.com/81a252e865.js" crossorigin="anonymous"></script>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <!-- 見出しを装飾するための記述を記載しています -->
   <link rel="stylesheet" href="assets/application.scss">
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <!-- いいね　ドロップダウン　-->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+<!-- 削除機能の実装のために記述、誤って消していた？ -->
+<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
 
 </head>
 <body>
@@ -26,6 +38,24 @@
         <li class="nav-item active">
 
 
+          <% if user_signed_in? %>
+
+          <%= link_to  destroy_user_session_path, method: :delete, class: 'btn btn-default' do%>
+          <i class="fas fa-running"></i>
+          <span>ログアウト</span>
+          <% end %>
+
+          <%= link_to  new_post_path, class: 'btn btn-default' do%>
+          <i class="far fa-newspaper"></i>
+          <span>投稿する</span>
+          <% end %>
+
+          <%= link_to  user_path(current_user.id), class: 'btn btn-default' do%>
+          <i class="far fa-address-card"></i>
+          <span>マイページ</span>
+          <% end %>
+
+          <% else %>
 
           <%= link_to  new_user_session_path, class: 'btn btn-default' do%>
           <i class="fas fa-sign-in-alt"></i>
@@ -38,45 +68,41 @@
           <span>会員登録</span>
           <% end %>
 
-          <%= link_to  destroy_user_session_path, method: :delete, class: 'btn btn-default' do%>
-          <i class="fas fa-running"></i>
-          <span>ログアウト</span>
-          <% end %>
 
-          <%= link_to  new_post_path, class: 'btn btn-default' do%>
-          <i class="far fa-newspaper"></i>
-          <span>投稿する</span>
-          <% end %>
 
-          <%= link_to  user_path(current_user), class: 'btn btn-default' do%>
-          <i class="far fa-address-card"></i>
-          <span>マイページ</span>
-          <% end %>
+
+
+
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">みんなの投稿</a>
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">みんなの投稿一覧</a>
 
             <div class="dropdown-menu" aria-labelledby="dropdown01">
               <%= link_to  posts_path, class: 'btn btn-default' do%>
               <i class="fas fa-carrot"></i>
               <span>筋肉飯</span>
+              <i class="fas fa-carrot"></i>
               <% end %>
-
               <%= link_to  posts_path, class: 'btn btn-default' do%>
               <i class="fas fa-biking"></i>
               <span>行ってるジム</span>
+              <i class="fas fa-biking"></i>
+
               <% end %>
 
               <%= link_to  posts_path, class: 'btn btn-default' do%>
               <i class="fas fa-swimmer"></i>
               <span>トレーニング</span>
+              <i class="fas fa-swimmer"></i>
               <% end %>
             </div>
+
           </li>
         </ul>
+        <% end %>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
         </form>
       </div>
     </nav>
@@ -86,3 +112,4 @@
     </footer>
   </body>
   </html>
+
