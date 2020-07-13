@@ -1,49 +1,55 @@
 
-<div class="text-center">
 
-  <%= form_for(@post, url: posts_path) do |f| %>
-  <% if @post.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= @post.errors.count %>件のエラーが発生しました。</h2>
-    <ul>
-      <% @post.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-  <% end %>
-
-
-
-  <div class="form-group">
-   <label for="photo">料理の写真を選んでください</label><br>
-   <%= f.attachment_field :image %><br>
-
-
-   <h3><label for="name">この料理の名前</label></h3>
-   <%= f.text_field :food_name, class:"form-control", placeholder:"この筋肉飯の名前は？" %>
- </div>
-
-   <%= f.text_field :caption, class:"form-control", placeholder:"この筋肉飯の名前は？" %>
-
-
-
-
-
-
- <div class="form-group">
-  <h3><label for="message">使った食材や栄養素</label></h3>
-  <textarea id="message" name="message" rows="8" cols="80" class="form-control"></textarea>
+<%= form_for(@post, url: posts_path) do |f| %>
+<% if @post.errors.any? %>
+<div id="error_explanation">
+  <h2><%= @post.errors.count %>件のエラーが発生しました。</h2>
+  <ul>
+    <% @post.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
 </div>
-<div class="form-group">
-  <h3><label for="star">美味しさレベル</label></h3>
-  <select id="star" class="form-control" name="star">
-    <option value="2017年1月">★★★星３つ（すごく美味しいです）</option>
-    <option value="2017年1月">★★☆星２つ(普通の味です)</option>
-    <option value="2017年1月">★☆☆星１つ(あんまり美味しくない...)</option>
-  </select>
-</div>
-<button type="submit" class="btn btn-primary">この食事をシェアする</button>
-</form>
 <% end %>
+
+
+
+<div class="container">
+  <div class="row py-3">
+    <div class="col-3 order-2" id="sticky-sidebar">
+      <div class="sticky-top">
+        sこちらはサイドバーです
+      </div>
+    </div>
+
+
+
+    <div class="col" id="main">
+      <h1>Main Area</h1>
+      <label for="photo">料理の写真を選んでください</label><br>
+      <%= f.attachment_field :image %><br>
+      <h3><label for="name">この料理の名前</label></h3>
+      <%= f.text_field :food_name, :size=>"60x100", placeholder:"この筋肉飯の名前は？" %>
+      <div class="inputsize">
+       <h3><label for="caption">説明</label></h3>
+       <%= f.text_area :caption, :size=>"60x10" , placeholder:"内容をこちらに入力してください" %>
+     </div>
+
+     <!-- 消すか迷い中 showに反映させるための記述は後でします-->
+     <div class="form-group">
+      <h3><label for="star">美味しさレベル</label></h3>
+      <select id="star"  name="star">
+        <option value="2017年1月">選んでください</option>
+        <option value="2017年1月">★★★星３つ（すごく美味しいです）</option>
+        <option value="2017年1月">★★☆星２つ(普通の味です)</option>
+        <option value="2017年1月">★☆☆星１つ(あんまり美味しくない...)</option>
+      </select>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">この食事をシェアする</button>
+  </form>
+  <% end %>
+</div>
+</div>
 </div>

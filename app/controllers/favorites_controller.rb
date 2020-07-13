@@ -1,4 +1,5 @@
 class FavoritesController < ApplicationController
+	protect_from_forgery
 	def create
 		post = Post.find(params[:post_id])
 		favorite = current_user.favorites.new(post_id: post.id)
