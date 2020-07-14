@@ -25,19 +25,19 @@
 
 
     <div class="col" id="main">
-      <h1>Main Area</h1>
+      <h3>新規投稿</h3>
       <label for="photo">料理の写真を選んでください</label><br>
       <%= f.attachment_field :image %><br>
-      <h3><label for="name">この料理の名前</label></h3>
+      <h4><label for="name">この料理の名前</label></h4>
       <%= f.text_field :food_name, :size=>"60x100", placeholder:"この筋肉飯の名前は？" %>
       <div class="inputsize">
-       <h3><label for="caption">説明</label></h3>
+       <h4><label for="caption">説明</label></h4>
        <%= f.text_area :caption, :size=>"60x10" , placeholder:"内容をこちらに入力してください" %>
      </div>
 
      <!-- 消すか迷い中 showに反映させるための記述は後でします-->
      <div class="form-group">
-      <h3><label for="star">美味しさレベル</label></h3>
+      <h4><label for="star">美味しさレベル</label></h4>
       <select id="star"  name="star">
         <option value="2017年1月">選んでください</option>
         <option value="2017年1月">★★★星３つ（すごく美味しいです）</option>
