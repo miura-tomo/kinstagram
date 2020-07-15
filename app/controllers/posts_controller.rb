@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-	 before_action :authenticate_user!
+	before_action :authenticate_user!
 
 
 	def top
@@ -13,14 +13,14 @@ class PostsController < ApplicationController
 		@post = Post.new(post_params)
 		@post.user_id = current_user.id
 		if @post.save
-		redirect_to posts_path
-	    else
-	    render :new
-	    end
+			redirect_to posts_path, notice: "投稿に成功しました。"
+		else
+			render :new
+		end
 	end
 
 	def index
-		@posts = Post.page(params[:page]).reverse_order
+ @posts = Post.page(params[:page]).per(6).order('updated_at DESC')
 	end
 
 	def show
@@ -44,9 +44,9 @@ class PostsController < ApplicationController
 		redirect_to posts_path
 	end
 
-private
-def post_params
-	params.require(:post).permit(:food_name, :image, :caption,)
-end
+	private
+	def post_params
+		params.require(:post).permit(:food_name, :image, :caption,)
+	end
 
 end

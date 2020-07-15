@@ -7,42 +7,41 @@
           <i class="fas fa-utensils">タイトル</i>
           <%= @post.food_name %></div>
 
-
+          <!-- simple_formatで改行が反映されるようにした -->
           <div class="post-title">
             <i class="fas fa-utensils">内容</i>
-            <%= @post.caption %></div>
+            <%= simple_format(@post.caption) %></div>
 
 
             <i class="far fa-edit">投稿日時</i>
-            <%= @post.created_at.strftime('%y20年%m月%d日') %>
+            <%= @post.created_at.strftime('%y20年%m月%d日 %H:%M') %>
 
 
             <!-- ユーザーがいいねをしているか？の条件分岐 -->
             <% if @post.favorited_by?(current_user) %>
             <li>
+              <%= @post.favorites.count %> いいね
               <%= link_to post_favorites_path(@post), method: :delete do %>
-              <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+              <i class="fa fa-heart" aria-hidden="true" style="color: red;"> いいねを取り消す</i>
               <% end %>
             </li>
             <% else %>
             <li>
               <%= link_to post_favorites_path(@post), method: :post do %> 
               <i class="fa fa-heart-o" aria-hidden="true"></i>
-              <%= @post.favorites.count %>いいね
+              <%= @post.favorites.count %> いいね
               <% end %>
             </li>
             <% end %>
-
-            <!-- ユーザー間のやり取りをeachメソッドで取り出す+件数表示 -->
+            <!-- コメントの件数表示 -->
             <li>
               <i class="fa fa-comment"></i>
               <a href="#comments"><%= @post.post_comments.count %>コメント</a>
             </li>
-
-
-
+            <!-- コメントの投稿をeachで回す記述 -->
             <% @post.post_comments.each do |post_comments| %>
-            <li class="comment">
+            <!-- コメント投稿者にリストの・がつくと見栄えが悪いのでnoneの適用 -->
+            <li style="list-style: none;">
               <div class="comment-body">
                 <div class="comment-avatar">
                   <div class="avatar">
@@ -56,11 +55,10 @@
                 <div class="comment-author clearfix">
                   <a href="#" class="link-author"><%= post_comments.user.name %></a>
                   <span class="comment-meta">
-                    <span class="comment-data"><%= post_comments.created_at.strftime('%y年%m月%d日') %></span>
+                    <span class="comment-data"><%= post_comments.created_at.strftime('%y20年%m月%d日 %H:%M') %></span>
                   </span>
                 </div>
-                <div class="comment-entry"><%= post_comments.comment %></div>
-
+                <div class="comment-entry"><%= simple_format(post_comments.comment) %></div>
                 <!-- コメントしたユーザーがログインユーザーであれば削除できる条件分岐 -->
                 <!-- link_toからbutton＿へと変更しました -->
                 <% if post_comments.user == current_user%>
@@ -103,9 +101,9 @@
   <!-- 投稿者がログインしてるユーザーであれば削除できるようにしました -->
   <% if @post.user == current_user %>
   <%= link_to  post_path(@post), method: :delete, class: 'btn btn-outline-danger' do%>
-<i class="far fa-trash-alt"></i>
+  <i class="far fa-trash-alt"></i>
   <span>この投稿を削除する</span>
   <i class="far fa-trash-alt"></i>
   <% end %>
+  <%= link_to "投稿を編集する", edit_post_path(@post) %>
   <% end %>
-<%= link_to "編集", edit_post_path(current_user.id) %>

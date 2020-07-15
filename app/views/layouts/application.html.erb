@@ -33,29 +33,61 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <h1><a href="/">
       <img src= "<%= asset_path "logo.png" %>" alt="kinstagram"></a></h1>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <% if user_signed_in? %>
-          <%= link_to  destroy_user_session_path, method: :delete, class: 'btn btn-default' do%>
-          <i class="fas fa-running"></i>
-          <span>ログアウト</span>
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <% if user_signed_in? %>
+            <%= link_to  destroy_user_session_path, method: :delete, class: 'btn btn-default' do%>
+            <i class="fas fa-running"></i>
+            <span>ログアウト</span>
+            <% end %>
+            <%= link_to  new_post_path, class: 'btn btn-default' do%>
+            <i class="far fa-newspaper"></i>
+            <span>投稿する</span>
+            <% end %>
+            <%= link_to  user_path(current_user.id), class: 'btn btn-default' do%>
+            <i class="far fa-address-card"></i>
+            <span>マイページ</span>
+            <% end %>
+            <!-- ドロップダウンメニューはサインアウトしていても表示される -->
+            <li class="nav-item dropdown">
+              <a class="nav-link btn btn-default dropdown-toggle" href="#"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">みんなの投稿一覧</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown01">
+                <%= link_to  posts_path, class: 'btn btn-default' do%>
+                <i class="fas fa-carrot"></i>
+                <span>筋肉飯</span>
+                <i class="fas fa-carrot"></i>
+                <% end %>
+                <%= link_to  posts_path, class: 'btn btn-default' do%>
+                <i class="fas fa-biking"></i>
+                <span>行ってるジム</span>
+                <i class="fas fa-biking"></i>
+                <% end %>
+                <%= link_to  posts_path, class: 'btn btn-default' do%>
+                <i class="fas fa-swimmer"></i>
+                <span>トレーニング</span>
+                <i class="fas fa-swimmer"></i>
+                <% end %>
+              </div>
+            </li>
+          </ul>
+          <!-- ログアウトしている場合 -->
+          <% else %>
+          <%= link_to  new_user_session_path, class: 'btn btn-default' do%>
+          <i class="fas fa-sign-in-alt"></i>
+          <span>ログインする</span>
           <% end %>
-          <%= link_to  new_post_path, class: 'btn btn-default' do%>
-          <i class="far fa-newspaper"></i>
-          <span>投稿する</span>
+          <%= link_to  new_user_registration_path, class: 'btn btn-default' do%>
+          <i class="fas fa-user-plus"></i>
+          <span>会員登録</span>
           <% end %>
-          <%= link_to  user_path(current_user.id), class: 'btn btn-default' do%>
-          <i class="far fa-address-card"></i>
-          <span>マイページ</span>
-          <% end %>
-          <!-- ドロップダウンメニューはサインアウトしていても表示される -->
+          <!-- ドロップダウンメニュー -->
           <li class="nav-item dropdown">
-            <a class="nav-link btn btn-default dropdown-toggle" href="#"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">みんなの投稿一覧</a>
+            <a class="nav-link btn btn-default dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">みんなの投稿一覧</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
               <%= link_to  posts_path, class: 'btn btn-default' do%>
               <i class="fas fa-carrot"></i>
@@ -75,51 +107,26 @@
             </div>
           </li>
         </ul>
-        <!-- ログアウトしている場合 -->
-        <% else %>
-        <%= link_to  new_user_session_path, class: 'btn btn-default' do%>
-        <i class="fas fa-sign-in-alt"></i>
-        <span>ログインする</span>
         <% end %>
-        <%= link_to  new_user_registration_path, class: 'btn btn-default' do%>
-        <i class="fas fa-user-plus"></i>
-        <span>会員登録</span>
-        <% end %>
-        <!-- ドロップダウンメニュー -->
-        <li class="nav-item dropdown">
-          <a class="nav-link btn btn-default dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">みんなの投稿一覧</a>
-          <div class="dropdown-menu" aria-labelledby="dropdown01">
-            <%= link_to  posts_path, class: 'btn btn-default' do%>
-            <i class="fas fa-carrot"></i>
-            <span>筋肉飯</span>
-            <i class="fas fa-carrot"></i>
-            <% end %>
-            <%= link_to  posts_path, class: 'btn btn-default' do%>
-            <i class="fas fa-biking"></i>
-            <span>行ってるジム</span>
-            <i class="fas fa-biking"></i>
-            <% end %>
-            <%= link_to  posts_path, class: 'btn btn-default' do%>
-            <i class="fas fa-swimmer"></i>
-            <span>トレーニング</span>
-            <i class="fas fa-swimmer"></i>
-            <% end %>
-          </div>
-        </li>
-      </ul>
-      <% end %>
-      <p class="text-right">
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="検索" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
-        </form>
-      </p>
-    </div>
-  </nav>
-  <%= yield %>
-  <footer class="container">
-    <p class="text-center">&copy; 筋stagram　</p>
-  </footer>
-</body>
-</html>
+        <p class="text-right">
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="検索" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
+          </form>
+        </p>
+      </div>
+    </nav>
+    <!-- フラッシュメッセージ -->
+    <% if flash[:notice] %>
+    <div class="alert alert-primary" role="alert"><strong><%= notice %></strong></div>
+    <% end %>
+    <% if flash[:alert] %>
+    <div class="alert alert-danger" role="alert"><strong><%= alert %></strong></div>
+    <% end %>
+    <%= yield %>
+    <footer class="container">
+      <p class="text-center">&copy; 筋stagram　</p>
+    </footer>
+  </body>
+  </html>
 
