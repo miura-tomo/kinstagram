@@ -44,7 +44,6 @@ group :development, :test do
   gem 'capistrano3-puma'
   gem 'capistrano-rbenv'
 end
-
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
@@ -77,3 +76,4 @@ group :production do
 end
 gem 'devise-i18n'
 gem 'devise-i18n-views'
+gem 'ransack'
