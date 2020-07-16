@@ -75,3 +75,5 @@ gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
+gem 'devise-i18n'
+gem 'devise-i18n-views'
