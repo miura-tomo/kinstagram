@@ -20,7 +20,7 @@ class PostsController < ApplicationController
 	end
 
 	def index
- @posts = Post.page(params[:page]).per(12).order('updated_at DESC')
+		@posts = Post.page(params[:page]).per(12).order('updated_at DESC')
 	end
 
 	def show

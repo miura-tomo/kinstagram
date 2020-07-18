@@ -1,0 +1,109 @@
+<div class="container">
+  <div class="row py-3">
+    <div class="col-3 order-2" id="sticky-sidebar">
+      <div class="sticky-top">
+        <!-- ２カラム表記の右側の記述 -->
+        <div class="training-title">
+          <i class="fas fa-utensils">タイトル</i>
+          <%= @training.training_name %></div>
+
+          <!-- simple_formatで改行が反映されるようにした -->
+          <div class="training-title">
+            <i class="fas fa-utensils">内容</i>
+            <%= simple_format(@training.explain) %></div>
+
+
+            <i class="far fa-edit">投稿日時</i>
+            <%= @training.created_at.strftime('%y20年%m月%d日 %H:%M') %>
+
+
+            <!-- ユーザーがいいねをしているか？の条件分岐 -->
+            <% if @training.loved_by?(current_user) %>
+            <li>
+              <%= @training.loves.count %> いいね
+              <%= link_to training_loves_path(@training), method: :delete do %>
+              <i class="fa fa-heart" aria-hidden="true" style="color: red;"> いいねを取り消す</i>
+              <% end %>
+            </li>
+            <% else %>
+            <li>
+              <%= link_to training_loves_path(@training), method: :training do %>
+              <i class="fa fa-heart-o" aria-hidden="true"></i>
+              <%= @training.loves.count %> いいね
+              <% end %>
+            </li>
+            <% end %>
+            <!-- コメントの件数表示 -->
+            <li>
+              <i class="fa fa-comment"></i>
+              <a href="#comments"><%= @training.training_comments.count %>コメント</a>
+            </li>
+            <!-- コメントの投稿をeachで回す記述 -->
+            <% @training.training_comments.each do |training_comments| %>
+            <!-- コメント投稿者にリストの・がつくと見栄えが悪いのでnoneの適用 -->
+            <li style="list-style: none;">
+              <div class="comment-body">
+                <div class="comment-avatar">
+                  <div class="avatar">
+                   <%= attachment_image_tag training_comments.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", size:'60x60' , class: "img-circle pull-left profile-thumb" %>
+                 </div>
+               </div>
+
+               <!-- コメント投稿者の画像と年月日を表示 -->
+
+               <div class="commetn-text">
+                <div class="comment-author clearfix">
+                  <a href="#" class="link-author"><%= training_comments.user.name %></a>
+                  <span class="comment-meta">
+                    <span class="comment-data"><%= training_comments.created_at.strftime('%y20年%m月%d日 %H:%M') %></span>
+                  </span>
+                </div>
+                <div class="comment-entry"><%= simple_format(training_comments.comment) %></div>
+                <!-- コメントしたユーザーがログインユーザーであれば削除できる条件分岐 -->
+                <!-- link_toからbutton＿へと変更しました -->
+                <% if training_comments.user == current_user%>
+                <div>
+                  <%= button_to "コメントを削除する", training_training_comment_path(training_comments.training, training_comments), method: :delete, class: "btn btn-danger btn-outline-secondary btn-sm" %>
+                </div>
+                <% end %>
+
+              </div>
+            </div>
+          </li>
+          <% end %>
+          <!-- コメントを残すためのフォームを親の幅いっぱいに広げるための記述です -->
+          <%= form_for [@training, @training_comment] do |f| %>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="row">
+                <div class="col-xs-12">
+                  <br><%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントはこちら" %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <%= f.submit "送信する", class: "btn btn-outline-primary  pull-right" %>
+          <% end %>
+
+        </div>
+      </div>
+
+
+      <!-- ２カラムの左側のレイアウト側 -->
+
+
+      <div class="col" id="main">
+        <h3><%= @training.user.name %>さんの投稿です</h3>
+        <%= attachment_image_tag @training, :image, size:'500x300' %>
+      </div>
+    </div>
+  </div>
+  <!-- 投稿者がログインしてるユーザーであれば削除できるようにしました -->
+  <% if @training.user == current_user %>
+  <%= link_to  training_path(@training), method: :delete, class: 'btn btn-outline-danger' do%>
+  <i class="far fa-trash-alt"></i>
+  <span>この投稿を削除する</span>
+  <i class="far fa-trash-alt"></i>
+  <% end %>
+  <%= link_to "投稿を編集する", new_training_path(@training) %>
+  <% end %>
