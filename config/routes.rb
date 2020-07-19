@@ -16,9 +16,14 @@ resources :posts, only: [:top, :new, :create, :index, :show, :destroy, :edit, :u
 	resources :post_comments, only: [:create, :destroy]
 end
 resources :users, only: [:show, :edit, :update]
-resources :trainings, only: [:new, :create, :index, :show] do
+resources :trainings, only: [:new, :create, :index, :show, :destroy] do
 	resource :loves, only: [:create, :destroy]
 	resources :training_comments, only: [:create, :destroy]
 end
+resources :gym_images, only: [:new, :create, :index, :show, :destroy] do
+  resource :like, only: [:create, :destroy]
+  resources :gym_comments, only: [:create, :destroy]
+end
+
 
 end

@@ -1,32 +1,31 @@
 <%= form_with(model: contact, local: true) do |form| %>
-  <% if contact.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+<% if contact.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
 
-      <ul>
-      <% contact.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <ul>
+    <% contact.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
-  <div class="field">
-    <%= form.label :お名前 %>
-    <%= form.text_field :name %>
-  </div>
+<div class="field">
+  <h4><%= form.label :お名前 %></h4>
+  <%= form.text_field :name %>
+</div>
 
-  <div class="field">
-    <%= form.label :メールアドレス %>
-    <%= form.text_field :email %>
-  </div>
+<div class="field">
+  <h4><%= form.label :メールアドレス %></h4>
+  <%= form.text_field :email %>
+</div>
 
-  <div class="field">
-    <%= form.label :お問い合わせ内容 %>
-    <%= form.text_area :content %>
-  </div>
+<div class="field">
+  <h4><%= form.label :お問い合わせ内容 %></h4>
+  <%= form.text_area :content %>
+</div>
 
-  <div class="送信する">
-    <%= form.submit %>
-  </div>
+<button type="submit" class="btn btn-primary">お問い合わせを送信する</button>
+
 <% end %>

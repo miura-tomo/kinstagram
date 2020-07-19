@@ -10,6 +10,9 @@ class User < ApplicationRecord
          has_many :favorites, dependent: :destroy
          has_many :trainings, dependent: :destroy
          has_many :loves, dependent: :destroy, class_name: "Love"
+         has_many :gym_images, dependent: :destroy
+         has_many :gym_comments, dependent: :destroy
+         has_many :likes, dependent: :destroy
          attachment :profile_image
 
          validates :name, presence: true

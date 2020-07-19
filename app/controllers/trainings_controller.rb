@@ -19,6 +19,12 @@ class TrainingsController < ApplicationController
 		@training_comment = TrainingComment.new
 	end
 
+	def destroy
+		@training = Training.find(params[:id])
+		@training.destroy
+		redirect_to trainings_path
+	end
+
 	private
 	def training_params
 		params.require(:training).permit(:training_name, :image, :explain)
