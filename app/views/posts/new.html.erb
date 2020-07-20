@@ -3,7 +3,7 @@
 <%= form_for(@post, url: posts_path) do |f| %>
 <% if @post.errors.any? %>
 <div id="error_explanation">
-  <h2><%= @post.errors.count %>件のエラーが発生しました。</h2>
+  <h3><%= @post.errors.count %>件のエラーが発生しました。</h3>
   <ul>
     <% @post.errors.full_messages.each do |message| %>
     <li><%= message %></li>
@@ -18,7 +18,11 @@
   <div class="row py-3">
     <div class="col-3 order-2" id="sticky-sidebar">
       <div class="sticky-top">
-        sこちらはサイドバーです
+        <br>
+        <h3>Qこのページは何をするページですか？</h3>
+        <b>このページでは<br>
+        あなたの普段食べている食事を投稿してください<br>筋肉が喜ぶような、健康的な食事を投稿してくださるととても嬉しいです。
+      このページを通じで、あなたが理想の体を手に入れることができることを祈っています。</b>
       </div>
     </div>
 
@@ -26,9 +30,9 @@
 
     <div class="col" id="main">
       <h3>筋肉メシを投稿する</h3>
-      <label for="photo">料理の写真を選んでください</label><br>
+      <label for="photo">筋肉飯の画像を選んでください</label><br>
       <%= f.attachment_field :image %><br>
-      <h4><label for="name">この料理の名前</label></h4>
+      <h4><label for="name">筋肉飯のレシピ名</label></h4>
       <%= f.text_field :food_name, :size=>"60x100", placeholder:"この筋肉飯の名前は？" %>
       <div class="inputsize">
        <h4><label for="caption">説明</label></h4>

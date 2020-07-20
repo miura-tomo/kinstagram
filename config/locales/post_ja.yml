@@ -1,0 +1,14 @@
+ja:
+  activerecord:
+    errors:
+      models:
+        post:
+          attributes:
+            food_name:
+              blank: が入力されていません。
+            image:
+              blank: が入力されていません。
+    attributes:
+      post:
+        food_name: 筋肉飯のレシピ名
+        image: 筋肉飯の画像

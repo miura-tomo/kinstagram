@@ -1,7 +1,8 @@
+<!-- form_withを使用してみました -->
 <%= form_with(model: contact, local: true) do |form| %>
 <% if contact.errors.any? %>
 <div id="error_explanation">
-  <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+  <h3><%= contact.errors.count %>件のエラーが発生しました</h3>
 
   <ul>
     <% contact.errors.full_messages.each do |message| %>
@@ -12,20 +13,19 @@
 <% end %>
 
 <div class="field">
-  <h4><%= form.label :お名前 %></h4>
+  <h4><%= form.label :name %></h4>
   <%= form.text_field :name %>
 </div>
 
 <div class="field">
-  <h4><%= form.label :メールアドレス %></h4>
+  <h4><%= form.label :email %></h4>
   <%= form.text_field :email %>
 </div>
 
 <div class="field">
-  <h4><%= form.label :お問い合わせ内容 %></h4>
-  <%= form.text_area :content %>
+  <h4><%= form.label :content %></h4>
+  <%= form.text_area :content, :size=>"60x10" %>
 </div>
 
 <button type="submit" class="btn btn-primary">お問い合わせを送信する</button>
-
 <% end %>
