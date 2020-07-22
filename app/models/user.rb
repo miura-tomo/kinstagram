@@ -4,16 +4,22 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-         has_many :posts, dependent: :destroy
-         has_many :post_comments, dependent: :destroy
-         has_many :training_comments, dependent: :destroy
-         has_many :favorites, dependent: :destroy
-         has_many :trainings, dependent: :destroy
-         has_many :loves, dependent: :destroy, class_name: "Love"
-         has_many :gym_images, dependent: :destroy
-         has_many :gym_comments, dependent: :destroy
-         has_many :likes, dependent: :destroy
-         attachment :profile_image
+  attachment :profile_image
+  validates :name, presence: true
 
-         validates :name, presence: true
+  has_many :posts, dependent: :destroy
+  has_many :post_comments, dependent: :destroy
+  has_many :training_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :trainings, dependent: :destroy
+  has_many :loves, dependent: :destroy, class_name: "Love"
+  has_many :gym_images, dependent: :destroy
+  has_many :gym_comments, dependent: :destroy
+  # recipesに対してlike（”いいね”のようなもの）ができる
+  has_many :recipes, dependent: :destroy
+  has_many :checkes, dependent: :destroy
+  # すでにrecipeに対してcheckをしているか？
+  def already_checked?(recipe)
+    checkes.exists?(recipe_id: recipe.id)
+  end
 end

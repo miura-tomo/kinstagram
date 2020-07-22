@@ -1,0 +1,5 @@
+_recipe_newから
+投稿一覧のチェックのIdを取得し、htmlを書き換える
+$("#index_check_<%= @recipe.id %>").html("<%= j(render partial: 'checks/check',locals: { recipe: @recipe})");
+
+$("#show_check_<%= @recipe.id %>").html("<%= j(render partial: 'checks/check',locals: { recipe: @recipe})");

@@ -5,5 +5,4 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     get recipes_index_url
     assert_response :success
   end
-
 end

@@ -1,13 +1,6 @@
-// モーダルフォームのtextareaを呼び出し、valを空にする
-$("textarea").val("");
-// inputタグを呼び出し、valで空にする。
-$("input").val("");
-// 投稿終了後モーダルフォームを閉じるようにhideメソッドで指示。
-// examplemodalというのはモーダルに割り当てたID。
-// IDを呼び出すときは＃をつける。
-$("#exampleModal").modal("hide");
-// モーダルバックドロップが閉じない問題が発生したので、下記の記述で呼び出し、removeさせる。
-$(".modal-backdrop").remove();
-// index.htmlからクラスを取得
-$(".recipes").html("<%= escape_javascript(render 'recipes' ,recipes: @recipes) %>")
-// escapeはJavaScriptファイル内にHTMLを挿入するときに実行結果をエスケープするために必要
+// recipeのindex画面からidを取得する。
+// htmlを書き変える
+// この記述でrecipe_index_newの一番前に来るようになる。
+// recipeのコントローラーのcreateアクションが呼ばれた際は、このjsが呼び出される。
+
+$("#recipe_index_new").html("<%= escape_javascript(render 'recipes/resipe_new' , recipes: @recipes) %>")

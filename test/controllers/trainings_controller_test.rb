@@ -20,5 +20,4 @@ class TrainingsControllerTest < ActionDispatch::IntegrationTest
     get trainings_show_url
     assert_response :success
   end
-
 end

@@ -1,0 +1,26 @@
+
+<% if user_signed_in? %>
+<% if current_user.already_checked?(recipe) %>
+<!-- ユーザーがログインしている、かつチェックボタンを押している時 -->
+<%= link_to recipe_checks_path(recipe), method: :delete, remote: true do %>
+<!-- remote:trueでリンクを非同期にしている。 -->
+<i class="fas fa-check"　aria-hidden="true" style="color: green;">
+	<!-- チェックマークは緑色に指定しました。 -->
+	<%= recipe.checks.count %>
+	<!-- 付けられたチェック数のカウント -->
+</i>
+<% end %>
+<!-- チェックボタンを押していないとき -->
+<% else %>
+<%= link_to users_recipe_checks_path(recipe), method: :post, remote: true do %>
+<i class="fas fa-check" aria-hidden="true" style="color: blue;">
+	<%= recipes.check.count %>
+</i>
+<% end %>
+<% end %>
+<% else %>
+<i class="fas fa-check" aria-hidden="true">
+	<%= recipe.checks.count %>
+</i>
+<% end %>
+

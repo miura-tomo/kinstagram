@@ -14,18 +14,24 @@
 
 <div class="field">
   <h4><%= form.label :name %></h4>
-  <%= form.text_field :name %>
+  <%= form.text_field :name,:size=>"60x60",placeholder:"筋肉　太郎" %>
 </div>
 
 <div class="field">
   <h4><%= form.label :email %></h4>
-  <%= form.text_field :email %>
+  <%= form.text_field :email, :size=>"60x60",placeholder:"example@aaaa.com" %>
+</div>
+
+<div class="field">
+  <h4><%= form.label :email %></h4>
+  <%= form.text_field :email, :size=>"60x60",placeholder:"お手数ですがアドレスの確認のためもう一度入力してください" %>
 </div>
 
 <div class="field">
   <h4><%= form.label :content %></h4>
-  <%= form.text_area :content, :size=>"60x10" %>
+  <%= form.text_area :content, :size=>"60x10",placeholder:"アプリケーションの不具合、ご意見・ご要望、広告の掲載依頼などをご記入ください" %>
 </div>
 
 <button type="submit" class="btn btn-primary">お問い合わせを送信する</button>
 <% end %>
+

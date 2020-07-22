@@ -1,0 +1,8 @@
+
+<h3>投稿詳細ページ</h3>
+<%= attachment_image_tag @recipe.user, :profile_image, fallback: "no_image.jpg", class:"profile-img-circle", size: "100x100" %>
+<%= @recipe.user.name %>
+
+<div id="show_check_<%= @recipe.id %>">
+	<%= render 'checks/check', recipe: @recipe %>
+</div>
