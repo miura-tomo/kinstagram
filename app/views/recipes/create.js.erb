@@ -1,6 +1,5 @@
-// recipeのindex画面からidを取得する。
-// htmlを書き変える
-// この記述でrecipe_index_newの一番前に来るようになる。
-// recipeのコントローラーのcreateアクションが呼ばれた際は、このjsが呼び出される。
-
-$("#recipe_index_new").html("<%= escape_javascript(render 'recipes/resipe_new' , recipes: @recipes) %>")
+$("textarea").val("");
+$("input").val("");
+$("#exampleModal").modal("hide")
+$(".modal-backdrop").remove();
+$(".recipes").html("<%= escape_javascript(render 'recipes',recipes: @recipes)%>")

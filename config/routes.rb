@@ -16,16 +16,20 @@ Rails.application.routes.draw do
     resources :post_comments, only: [:create, :destroy]
   end
 
-  resources :users, only: [:show, :edit, :update]
+  resources :recipes, only: [:index, :show, :new, :create] do
+    resource :checkes, only: [:create, :destroy]
+  end
+
+  resources :users do
+    get :search, on: :collection
+  end
+
   resources :trainings, only: [:new, :create, :index, :show, :destroy] do
     resource :loves, only: [:create, :destroy]
     resources :training_comments, only: [:create, :destroy]
   end
 
-  resources :users
-  resources :recipes, only: [:index, :show, :new, :create] do
-    resource :checks, only: [:create, :destroy]
-  end
+
 
   resources :gym_images, only: [:new, :create, :index, :show, :destroy] do
     resource :like, only: [:create, :destroy]

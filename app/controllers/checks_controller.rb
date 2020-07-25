@@ -1,4 +1,5 @@
 class ChecksController < ApplicationController
+
   before_action :recipe_params
   def create
     check = current_user.checks.new(recipe_id: @recipe.id)

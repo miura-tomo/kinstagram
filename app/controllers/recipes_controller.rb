@@ -1,25 +1,20 @@
 class RecipesController < ApplicationController
-  def new
+
+
+  def index
+    @recipes = Recipe.page(params[:page]).per(5).order('updated_at DESC')
     @recipe = Recipe.new
   end
 
-  def create
-    @recipe = Recipe.new(recipe_params)
-    if @recipe.save
-      @recipes = Recipe.order(created_at: :desc).limit(7)
-      render :create
-    else
-      render :new
-    end
-  end
-
-  def index
-    @recipes = Recipe.order(created_at: :desc).limit(7)
+   def create
+    Recipe.create(recipe_params)
+    @recipes = Recipe.all
   end
 
   def show
     @recipe = Recipe.find(params[:id])
   end
+
 
   private
 

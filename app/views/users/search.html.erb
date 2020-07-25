@@ -1,0 +1,39 @@
+
+
+
+<div class="container">
+  <div class="row py-3">
+    <div class="col-3 order-2" id="sticky-sidebar">
+      <div class="sticky-top">
+        <br><b>お探しのユーザーは見つかりましたか？
+          <br><br>もしお探しのユーザーが見つからない場合は、検索の方法を漢字またはひらがな等、検索の方法を変更してみると見つかるかもしれません。
+        </b>
+      </div>
+    </div>
+
+
+
+    <div class="col" id="main">
+      <h3>検索結果</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>検索にヒットしたユーザーは以下のとおりです</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+          <tr>
+            <td>
+              <%= link_to root_path do %>
+              <%= user.name %>さん
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

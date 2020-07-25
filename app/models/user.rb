@@ -17,9 +17,9 @@ class User < ApplicationRecord
   has_many :gym_comments, dependent: :destroy
   # recipesに対してlike（”いいね”のようなもの）ができる
   has_many :recipes, dependent: :destroy
-  has_many :checkes, dependent: :destroy
+  has_many :checkes, dependent: :destroy, class_name: "Check"
   # すでにrecipeに対してcheckをしているか？
   def already_checked?(recipe)
-    checkes.exists?(recipe_id: recipe.id)
+    self.checkes.exists?(recipe_id: recipe.id)
   end
 end

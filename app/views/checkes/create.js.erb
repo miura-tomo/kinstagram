@@ -1,0 +1,2 @@
+$("#index_check_<%= @recipe.id %>").html("<%= j(render partial: 'checks/check', locals: { check: @check}) %>");
+$("#show_check_<%= @recipe.id %>").html("<%= j(render partial: 'checks/check', locals: { check: @check}) %>");

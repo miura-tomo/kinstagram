@@ -1,3 +1,0 @@
-ここでは投稿につけられたチェックを差し替える記述を行う。
-$("#index_check_<%= @recipe.id %>").html("<%= j(render partial: 'checks/check',locals: { recipe: @recipe})");
-$("#show_check_<%= @recipe.id %>").html("<%= j(render partial: 'checks/check',locals: { recipe: @recipe})");
