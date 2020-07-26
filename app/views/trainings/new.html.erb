@@ -12,35 +12,28 @@
 </div>
 <% end %>
 
-
-
 <div class="container">
   <div class="row py-3">
     <div class="col-3 order-2" id="sticky-sidebar">
       <div class="sticky-top">
-        <h3>Qこのページは何をするページですか？</h3>
-        <b><br>あなたが普段やっているトレーニングを共有するページです。<br>難しいトレーニングを書く必要はありません！<br>
-        ダイエットの目標宣言であったり、<br>『今日は腕立て伏せを〇〇回やりました！』などといった、小さな成功を共有しても大丈夫です。<br><br>このページを通じてフィットネス仲間を作ることに役立ててくれると嬉しいです。</b>
       </div>
     </div>
-
-
-
     <div class="col" id="main">
-      <h3>トレーニングの共有</h3>
-      <label for="photo">参考になる画像があれば選択してください(なくても構いません)</label><br>
-      <%= f.attachment_field :image %><br>
-      <h4><label for="name">トレーニング種目</label></h4>
-      <%= f.text_field :training_name, :size=>"60x100", placeholder:"鍛えられる部位は？" %>
-      <div class="inputsize">
-       <h4><label for="explain">説明</label></h4>
-       <%= f.text_area :explain, :size=>"60x10" , placeholder:"コツやセット数があれば、よかったら記入してください" %>
-     </div>
-
-
-    <button type="submit" class="btn btn-primary">このトレーニングをシェアする</button>
-  </form>
-  <% end %>
-</div>
-</div>
+      <h4>Qこのページは何をするページですか？</h4>
+      <b><br>あなたが普段やっているトレーニングを共有するページです。<br>難しいトレーニングを書く必要はありません！<br><br>
+        『今日からダイエットします！』などのダイエットの目標宣言であったり、<br>『今日は腕立て伏せを〇〇回やりました！』などといった、小さな成功を共有しても大丈夫です。<br><br>このページを通じてフィットネス仲間を作ることに役立ててくれると嬉しいです。</b>
+        <h3>トレーニングの共有</h3>
+        <label for="photo">参考になる画像があれば選択してください(なくても構いません)</label><br>
+        <%= f.attachment_field :image %><br>
+        <h4><label for="name">トレーニング種目</label></h4>
+        <%= f.text_field :training_name, :size=>"60x100", placeholder:"鍛えられる部位は？" %>
+        <div class="inputsize">
+         <h4><label for="explain">説明</label></h4>
+         <%= f.text_area :explain, :size=>"60x10" , placeholder:"コツやセット数があれば、よかったら記入してください" %>
+       </div>
+       <button type="submit" class="btn btn-primary">このトレーニングをシェアする</button>
+     </form>
+     <% end %>
+   </div>
+ </div>
 </div>

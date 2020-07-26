@@ -20,16 +20,16 @@
             <!-- ユーザーがいいねをしているか？の条件分岐 -->
             <% if @training.loved_by?(current_user) %>
             <li>
-              <%= @training.loves.count %> いいね
+              <%= @training.loves.count %> マッスる
               <%= link_to training_loves_path(@training), method: :delete do %>
-              <i class="fa fa-heart" aria-hidden="true" style="color: red;"> いいねを取り消す</i>
+              <i class="fa fa-heart" aria-hidden="true" style="color: red;"> マッスルを取り消す</i>
               <% end %>
             </li>
             <% else %>
             <li>
               <%= link_to training_loves_path(@training), method: :training do %>
               <i class="fa fa-heart-o" aria-hidden="true"></i>
-              <%= @training.loves.count %> いいね
+              <%= @training.loves.count %> マッスル
               <% end %>
             </li>
             <% end %>
@@ -105,5 +105,5 @@
   <span>この投稿を削除する</span>
   <i class="far fa-trash-alt"></i>
   <% end %>
-  <%= link_to "投稿を編集する", new_training_path(@training) %>
+  <%= link_to "投稿を編集する", edit_training_path(@training) %>
   <% end %>

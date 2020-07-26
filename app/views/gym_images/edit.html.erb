@@ -10,11 +10,13 @@
 
         <div class="col" id="main">
             <h3>投稿を編集できます</h3>
-<%= form_for(@post, url: post_path(@post.id)) do |f| %>
+<%= form_for(@gym_image, url: gym_image_path(@gym_image.id)) do |f| %>
+<h4>画像</h4>
+<%= f.attachment_field :image %>
 <h4>タイトル</h4>
-<%= f.text_field :food_name %>
+<%= f.text_field :gym_name %>
 <h4>本文</h4>
-<%= f.text_area :caption, :size=>"60x10" %>
+<%= f.text_area :intro, :size=>"60x10" %>
 <%= f.submit '保存' %>
 <% end %>
         </div>

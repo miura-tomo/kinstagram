@@ -11,24 +11,17 @@
   </ul>
 </div>
 <% end %>
-
-
-
 <div class="container">
   <div class="row py-3">
     <div class="col-3 order-2" id="sticky-sidebar">
       <div class="sticky-top">
-        <br>
-        <h3>Qこのページは何をするページですか？</h3>
-        <b>このページでは<br>
-        あなたの普段食べている食事を投稿してください<br>筋肉が喜ぶような、健康的な食事を投稿してくださるととても嬉しいです。
-      このページを通じで、あなたが理想の体を手に入れることができることを祈っています。</b>
+
       </div>
     </div>
-
-
-
     <div class="col" id="main">
+      <br>
+      <h4>Qこのページは何をするページですか？</h4>
+      <b>このページではあなたの普段食べている食事を投稿してください。<br>筋肉が喜ぶような、健康的な食事を投稿してくださるととても嬉しいです。<br>このページを通じで、あなたが理想の体を手に入れることができることを祈っています。</b>
       <h3>筋肉メシを投稿する</h3>
       <label for="photo">筋肉飯の画像を選んでください</label><br>
       <%= f.attachment_field :image %><br>
@@ -36,24 +29,11 @@
       <%= f.text_field :food_name, :size=>"60x100", placeholder:"この筋肉飯の名前は？" %>
       <div class="inputsize">
        <h4><label for="caption">説明</label></h4>
-       <%= f.text_area :caption, :size=>"60x10" , placeholder:"内容をこちらに入力してください" %>
+       <%= f.text_area :caption, :size=>"60x10" , placeholder:"もしよろしければ、栄養素や食材をこちらに入力してください" %>
      </div>
-
-     <!-- 消すか迷い中 showに反映させるための記述は後でします-->
-     <div class="form-group">
-      <h4><label for="star">美味しさレベル</label></h4>
-      <select id="star"  name="star">
-        <option value="2017年1月">選んでください</option>
-        <option value="2017年1月">★★★星３つ（すごく美味しいです）</option>
-        <option value="2017年1月">★★☆星２つ(普通の味です)</option>
-        <option value="2017年1月">★☆☆星１つ(あんまり美味しくない...)</option>
-      </select>
-    </div>
-
-
-    <button type="submit" class="btn btn-primary">この食事をシェアする</button>
-  </form>
-  <% end %>
-</div>
+     <button type="submit" class="btn btn-primary">この食事をシェアする</button>
+   </form>
+   <% end %>
+ </div>
 </div>
 </div>

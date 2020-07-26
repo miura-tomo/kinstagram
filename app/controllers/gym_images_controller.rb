@@ -19,6 +19,16 @@ class GymImagesController < ApplicationController
     @gym_comment = GymComment.new
   end
 
+  def edit
+    @gym_image = GymImage.find(params[:id])
+  end
+
+  def update
+    gym_image = GymImage.find(params[:id])
+    gym_image.update(gym_image_params)
+    redirect_to gym_image_path(gym_image)
+  end
+
   def destroy
     @gym_image = GymImage.find(params[:id])
     @gym_image.destroy

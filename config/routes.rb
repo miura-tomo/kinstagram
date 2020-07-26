@@ -24,14 +24,14 @@ Rails.application.routes.draw do
     get :search, on: :collection
   end
 
-  resources :trainings, only: [:new, :create, :index, :show, :destroy] do
+  resources :trainings, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     resource :loves, only: [:create, :destroy]
     resources :training_comments, only: [:create, :destroy]
   end
 
 
 
-  resources :gym_images, only: [:new, :create, :index, :show, :destroy] do
+  resources :gym_images, only: [:new, :create, :index, :show, :edit, :update,:destroy] do
     resource :like, only: [:create, :destroy]
     resources :gym_comments, only: [:create, :destroy]
   end

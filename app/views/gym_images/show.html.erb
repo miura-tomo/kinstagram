@@ -20,16 +20,16 @@
             <!-- ユーザーがいいねをしているか？の条件分岐 -->
             <% if @gym_image.liked_by?(current_user) %>
             <li>
-              <%= @gym_image.likes.count %> いいね
+              <%= @gym_image.likes.count %> マッチョ
               <%= link_to gym_image_like_path(@gym_image), method: :delete do %>
-              <i class="fa fa-heart" aria-hidden="true" style="color: red;"> いいねを取り消す</i>
+              <i class="fas fa-dumbbell" aria-hidden="true" style="color: red;"> マッチョを取り消す</i>
               <% end %>
             </li>
             <% else %>
             <li>
               <%= link_to gym_image_like_path(@gym_image), method: :gym_image do %>
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-              <%= @gym_image.likes.count %> いいね
+              <i class="fas fa-dumbbell-o" aria-hidden="true"></i>
+              <%= @gym_image.likes.count %> マッチョ
               <% end %>
             </li>
             <% end %>
@@ -105,5 +105,5 @@
   <span>この投稿を削除する</span>
   <i class="far fa-trash-alt"></i>
   <% end %>
-  <%= link_to "投稿を編集する", new_gym_image_path(@gym_image) %>
+  <%= link_to "投稿を編集する", edit_gym_image_path(@gym_image) %>
   <% end %>

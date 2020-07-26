@@ -25,7 +25,7 @@
           <% @users.each do |user| %>
           <tr>
             <td>
-              <%= link_to root_path do %>
+              <%= link_to user_path(user) do %>
               <%= user.name %>さん
               <% end %>
             </td>

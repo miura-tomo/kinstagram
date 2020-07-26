@@ -49,42 +49,42 @@
           <span>お問い合わせ</span>
           <% end %>
           <li class="nav-item dropdown">
-            <a class="nav-link btn btn-default dropdown-toggle" href="#"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">投稿をする</a>
+            <a class="nav-link btn btn-default dropdown-toggle" href="#"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">新規投稿をする</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
               <%= link_to  new_post_path, class: 'btn btn-default' do%>
               <i class="fas fa-carrot"></i>
-              <span>筋肉飯</span>
+              <span>筋肉飯を投稿</span>
               <i class="fas fa-carrot"></i>
               <% end %>
               <%= link_to  new_training_path, class: 'btn btn-default' do%>
               <i class="fas fa-biking"></i>
-              <span>トレーニング日記</span>
+              <span>トレーニング日記をつける</span>
               <i class="fas fa-biking"></i>
               <% end %>
               <%= link_to  new_gym_image_path, class: 'btn btn-default' do%>
               <i class="fas fa-swimmer"></i>
-              <span>通っているジム情報</span>
+              <span>通っているジム情報を投稿</span>
               <i class="fas fa-swimmer"></i>
               <% end %>
             </div>
           </li>
           <!-- ドロップダウンメニューはサインアウトしていても表示される -->
           <li class="nav-item dropdown">
-            <a class="nav-link btn btn-default dropdown-toggle" href="#"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">みんなの投稿一覧</a>
+            <a class="nav-link btn btn-default dropdown-toggle" href="#"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">みんなの投稿を見る</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
               <%= link_to  posts_path, class: 'btn btn-default' do%>
               <i class="fas fa-carrot"></i>
-              <span>筋肉飯</span>
+              <span>筋肉飯を見る</span>
               <i class="fas fa-carrot"></i>
               <% end %>
               <%= link_to  gym_images_path, class: 'btn btn-default' do%>
               <i class="fas fa-biking"></i>
-              <span>行ってるジム</span>
+              <span>ユーザーの行ってるジムを見る</span>
               <i class="fas fa-biking"></i>
               <% end %>
               <%= link_to  trainings_path, class: 'btn btn-default' do%>
               <i class="fas fa-swimmer"></i>
-              <span>トレーニング</span>
+              <span>トレーニング情報を見る</span>
               <i class="fas fa-swimmer"></i>
               <% end %>
             </div>
@@ -106,7 +106,7 @@
         <% end %>
         <!-- ドロップダウンメニュー -->
         <li class="nav-item dropdown">
-          <a class="nav-link btn btn-default dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">みんなの投稿一覧</a>
+          <a class="nav-link btn btn-default dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">みんなの投稿を見る</a>
           <div class="dropdown-menu" aria-labelledby="dropdown01">
             <%= link_to  posts_path, class: 'btn btn-default' do%>
             <i class="fas fa-carrot"></i>
@@ -128,7 +128,7 @@
       </ul>
       <% end %>
       <%= form_with url: search_users_path, method: :get, local: true do |f| %>
-      <%= f.text_field :name,:size=>"30x10",placeholder:"検索したいユーザー名" %>
+      <%= f.text_field :name,:size=>"40x10",placeholder:"検索したいユーザー名を入力してください" %>
       <%= f.submit :検索 %>
       <% end %>
     </div>
