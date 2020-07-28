@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'kujis/index'
   # お問い合わせフォームから届いたメールを確認するために導入
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
@@ -35,4 +36,7 @@ Rails.application.routes.draw do
     resource :like, only: [:create, :destroy]
     resources :gym_comments, only: [:create, :destroy]
   end
+
+  resources :kujis, only:[:index]
+
 end

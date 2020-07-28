@@ -44,9 +44,22 @@
           <i class="far fa-address-card"></i>
           <span>マイページ</span>
           <% end %>
+          <%= link_to   recipes_path, class: 'btn btn-default' do%>
+          <i class="fas fa-microphone-alt"></i>
+          <span>おたけび</span>
+          <% end %>
+          
+          <%= link_to   kujis_path, class: 'btn btn-default' do%>
+          <i class="far fa-hand-point-right"></i>
+          <span>筋肉ルーレット</span>
+          <% end %>
           <%= link_to  new_contact_path, class: 'btn btn-default' do%>
           <i class="fas fa-question"></i>
           <span>お問い合わせ</span>
+          <% end %>
+          <%= link_to   kujis_path, class: 'btn btn-default' do%>
+          <i class="far fa-hand-point-right"></i>
+          <span>筋肉ルーレット</span>
           <% end %>
           <li class="nav-item dropdown">
             <a class="nav-link btn btn-default dropdown-toggle" href="#"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">新規投稿をする</a>
@@ -103,6 +116,15 @@
         <%= link_to  new_contact_path, class: 'btn btn-default' do%>
         <i class="fas fa-question"></i>
         <span>お問い合わせ</span>
+        <% end %>
+        <%= link_to   recipes_path, class: 'btn btn-default' do%>
+        <i class="fas fa-microphone-alt"></i>
+        <span>おたけび</span>
+        <% end %>
+
+        <%= link_to   kujis_path, class: 'btn btn-default' do%>
+        <i class="far fa-hand-point-right"></i>
+        <span>筋肉ルーレット</span>
         <% end %>
         <!-- ドロップダウンメニュー -->
         <li class="nav-item dropdown">

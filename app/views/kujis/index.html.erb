@@ -1,0 +1,23 @@
+<h3><i class="far fa-hand-point-right"></i>今日はどこを鍛えルーレット</h3>
+<h4>運動するのが面倒な時に、このルーレットを使ってみてください！<br>うまく表示されない場合はページを更新してみてください！<i class="fas fa-smile-wink"></i></h4>
+
+　<style>
+	p{
+		text-align: center;
+		font-size: 2.2em;
+		margin-top: 100px;
+	}
+</style>
+
+</head>
+<body>
+	<script>
+		let kujis =['ベンチプレスor腕立て','スクワット15回','腹筋30×3','デットリフト','30分ひたすら走る','サイドレイズ・ショルダープレス・リアレイズ',];
+		// console.log(kujis[0]);
+		let kuji =  Math.floor (Math.random() * 6) ;
+		// console.log(kuji);
+		document.write('<p> あなた今日のトレーニングは<br/>『' + kujis[kuji] + '』です。</p>');
+	</script>
+
+</body>
+</html>

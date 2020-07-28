@@ -1,4 +1,5 @@
 <h2>トレーニングエリア</h2>
+<h3>みんなのトレーニングを見ることができます<i class="fas fa-running"></i></h3>
 
 <div class="row">
   <% @trainings.each do |training| %>
@@ -7,13 +8,12 @@
        <%= link_to training_path(training.id) do %>
        <%= attachment_image_tag training, :image, class: 'card-img-top' %>
        <% end %>
-       <%= attachment_image_tag training.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", size:'60x60' , class: "img-circle pull-left profile-thumb" %>
+      <%= attachment_image_tag training.user, :profile_image, :fill, 300, 300, fallback: "no_image.jpg", size:'300x300' , class: "img-circle " %>
 
        <%= link_to training_path(training.id) do %>
        <i class="fas fa-utensils"></i>
        <%= training.training_name %>
        <% end %>
-       <%= training.explain %>
        <p><i class="fas fa-user-edit"></i>ユーザー名
          <%= training.user.name %>
      </p>

@@ -14,8 +14,6 @@
 
             <i class="far fa-edit">投稿日時</i>
             <%= @post.created_at.strftime('%y20年%m月%d日 %H:%M') %>
-
-
             <!-- ユーザーがいいねをしているか？の条件分岐 -->
             <% if @post.favorited_by?(current_user) %>
             <li>
@@ -58,8 +56,6 @@
                   </span>
                 </div>
                 <div class="comment-entry"><%= simple_format(post_comments.comment) %></div>
-                <!-- コメントしたユーザーがログインユーザーであれば削除できる条件分岐 -->
-                <!-- link_toからbutton＿へと変更しました -->
                 <% if post_comments.user == current_user%>
                 <div>
                   <%= button_to "コメントを削除する", post_post_comment_path(post_comments.post, post_comments), method: :delete, class: "btn btn-danger btn-outline-secondary btn-sm" %>
@@ -86,10 +82,6 @@
 
         </div>
       </div>
-
-
-      <!-- ２カラムの左側のレイアウト側 -->
-
 
       <div class="col" id="main">
         <h3><%= @post.user.name %>さんの投稿です</h3>
