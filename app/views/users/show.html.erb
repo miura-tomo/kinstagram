@@ -3,7 +3,7 @@
     <div class="col-3 order-2" id="sticky-sidebar">
       <div class="sticky-top">
        <h3 class="profile-name"><%= @user.name %>さんのマイページ</h3>
-       <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile_image", fallback: "no_image.jpg", size:'60x60' %>
+          <%= attachment_image_tag @user, :profile_image, size: "100x100", class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%>
        <% if @user.id == current_user.id %>
        <%= link_to  edit_user_path(@user), class: 'btn btn-outline-info' do %>
        <i class="fas fa-glasses"></i>
@@ -22,7 +22,7 @@
          <%= link_to post_path(post.id) do %>
          <%= attachment_image_tag  post, :image, class: 'card-img-top' %>
          <% end %>
-         <%= attachment_image_tag post.user, :profile_image, size: "300x300", fallback: "no_image.jpg", size:'100x100' , class: "img-circle" %>
+            <%= attachment_image_tag @user, :profile_image, size: "100x100", class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%>
          <%= link_to post_path(post.id) do %>
          <i class="fas fa-utensils"></i>
          <%= post.food_name %>
