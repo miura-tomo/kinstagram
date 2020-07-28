@@ -6,7 +6,6 @@
         <div class="post-title">
           <i class="fas fa-utensils">タイトル</i>
           <%= @post.food_name %></div>
-          
           <div class="post-title">
             <i class="fas fa-utensils">内容</i>
             <%= simple_format(@post.caption) %></div>
@@ -24,7 +23,7 @@
             </li>
             <% else %>
             <li>
-              <%= link_to post_favorites_path(@post), method: :post do %> 
+              <%= link_to post_favorites_path(@post), method: :post do %>
               <i class="fa fa-heart-o" aria-hidden="true"></i>
               <%= @post.favorites.count %> いいね
               <% end %>
