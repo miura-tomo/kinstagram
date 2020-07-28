@@ -45,7 +45,7 @@
               <div class="comment-body">
                 <div class="comment-avatar">
                   <div class="avatar">
-                   <%= attachment_image_tag gym_image_comments.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", size:'60x60' , class: "img-circle pull-left profile-thumb" %>
+                   <%= attachment_image_tag gym_image_comments.user, :profile_image, size: "100x100", class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%>
                  </div>
                </div>
 
