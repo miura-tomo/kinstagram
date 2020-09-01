@@ -30,7 +30,7 @@
 ### 機能一覧
 [Googleドライブへ飛びます](https://docs.google.com/spreadsheets/d/12qq9LiRym56jvd4sjlZ2kUwUoG2l35JsQEcXQo0tJDE/edit?usp=sharing)
 
-###　開発環境・言語など
+### 開発環境・言語など
 
 - 言語
 Ruby2.5.7
